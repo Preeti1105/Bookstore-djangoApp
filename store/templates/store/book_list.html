@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 40px;
+            color: #333;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        .book {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .book strong {
+            font-size: 18px;
+        }
+
+        form {
+            display: inline;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .nav-links {
+            margin-top: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Books</h2>
+
+    {% for book in books %}
+        <div class="book">
+            <strong>{{ book.title }}</strong> by {{ book.author }} - ₹{{ book.price }}
+            <form method="post" action="{% url 'add_to_cart' book.id %}">
+                {% csrf_token %}
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
+    {% empty %}
+        <p>No books available.</p>
+    {% endfor %}
+
+    <div class="nav-links">
+        <a href="{% url 'cart' %}">View Cart</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</body>
+</html>
+
+

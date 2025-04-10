@@ -1,0 +1,93 @@
+<!-- <h2>Your Cart</h2>
+{% if books %}
+    <ul>
+    {% for book in books %}
+        <li>{{ book.title }} by {{ book.author }} - ₹{{ book.price }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
+
+<a href="{% url 'book_list' %}">Back to Books</a> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            padding: 40px;
+            color: #333;
+        }
+
+        .cart-container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #ecf0f1;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #7f8c8d;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+
+        {% if books %}
+            <ul>
+                {% for book in books %}
+                    <li>{{ book.title }} by {{ book.author }} - ₹{{ book.price }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="empty-message">Your cart is empty.</p>
+        {% endif %}
+
+        <a href="{% url 'book_list' %}" class="back-link">← Back to Books</a>
+    </div>
+</body>
+</html>
